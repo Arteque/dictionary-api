@@ -1,0 +1,52 @@
+@import url("/fonts/Fonts.css");
+:root {
+  --clr-bg-main: #ffffff;
+  --clr-bg-sub: #757575;
+  --clr-txt-main: #2e2e2e;
+  --clr-txt-sub: #757575;
+  --clr-call-main: #a445ed;
+  --clr-call-sub: #ff5252;
+  --font:"Inconsolata", monospace;
+}
+
+body {
+  background-color: var(--clr-bg-main);
+  color: var(--clr-txt-main);
+}
+body[data-font=sans-serif] {
+  --font: "Inter", sans-serif;
+}
+body[data-font=serif] {
+  --font: "Lora", serif;
+}
+body[data-font=mono] {
+  --font: "Inconsolata", monospace;
+}
+body.dark-mode {
+  --clr-bg-main: #050505;
+  --clr-bg-sub: #757575;
+  --clr-txt-main: #ffffff;
+  --clr-txt-sub: #757575;
+  --clr-call-main: #a445ed;
+  --clr-call-sub: #ff5252;
+}
+
+.txt-headline-l {
+  font-size: 64px;
+}
+
+.txt-headline-m {
+  font-size: 24px;
+}
+
+.txt-headline-s {
+  font-size: 20px;
+}
+
+.txt-body-m {
+  font-size: 18px;
+}
+
+.txt-body-s {
+  font-size: 14px;
+}/*# sourceMappingURL=Var.css.map */

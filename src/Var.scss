@@ -1,0 +1,82 @@
+@import url("/fonts/Fonts.css");
+$darkmode:(
+    bg:(
+        main: #050505,
+        sub: #757575,
+    ),
+    txt:(
+        main: #ffffff,
+        sub:   #757575,
+    ),
+    call:(
+        main: #a445ed,
+        sub:#ff5252
+    )
+
+);
+
+$lightmode:(
+    bg:(
+        main: #ffffff,
+        sub: #757575
+    ),
+    txt:(
+        main: #2e2e2e,
+        sub:   #757575
+    ),
+    call:(
+        main: #a445ed,
+        sub:#ff5252
+    )
+
+);
+
+$txtsizes:(
+    headline:(
+        l:64px,
+        m:24px,
+        s:20px
+    ),
+    body:(
+        m:18px,
+        s:14px
+    )
+);
+
+:root{
+  @each $clr, $vls in $lightmode{
+    @each $subclr, $subclrvl in $vls{
+        --clr-#{$clr}-#{$subclr}: #{$subclrvl};
+    }
+  }  
+  --font:'Inconsolata', monospace;
+}
+
+body{
+    &[data-font="sans-serif"]{
+        --font: 'Inter', sans-serif;
+    }
+    &[data-font="serif"]{
+        --font: 'Lora', serif;
+    }
+    &[data-font="mono"]{
+        --font: 'Inconsolata', monospace;
+    }
+    &.dark-mode{
+        @each $clr, $vls in $darkmode{
+            @each $subclr, $subclrvl in $vls{
+                --clr-#{$clr}-#{$subclr}: #{$subclrvl};
+            }
+          }  
+    }
+    background-color: var(--clr-bg-main);
+    color: var(--clr-txt-main);
+}
+
+@each $name, $vls in $txtsizes{
+    @each $size, $vl in $vls{
+        .txt-#{$name}-#{$size}{
+            font-size: #{$vl};
+        }
+    }
+}

@@ -1,0 +1,95 @@
+@import url("./Var.scss");
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html, body {
+  font-family: var(--font);
+}
+
+button, input {
+  border: unset;
+  background-color: unset;
+}
+
+button {
+  cursor: pointer;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: var(--clr-call-main);
+  border-radius: 20px;
+  width: 40px;
+  height: 20px;
+  padding: 0 2px;
+  position: relative;
+  -webkit-writing-mode: bt-lr;
+      -ms-writing-mode: bt-lr;
+          writing-mode: bt-lr;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  width: 14px;
+  aspect-ratio: 1/1;
+  background-color: var(--clr-bg-main);
+  border-radius: 50%;
+  cursor: pointer;
+}
+input[type=range]::-ms-thumb {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--clr-txt-main);
+  border-radius: 50%;
+}
+
+header.main-header .top-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+header.main-header .top-header .logo-container {
+  -webkit-margin-end: auto;
+          margin-inline-end: auto;
+}
+header.main-header .top-header .darkmode-container label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+header.main-header .fonts-setup-container {
+  position: relative;
+}
+header.main-header .fonts-setup-container select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 120px;
+  height: 24px;
+  border: unset;
+  font-weight: 700;
+  border-radius: 10px;
+}
+header.main-header .fonts-setup-container select:focus {
+  outline: 2px solid var(--clr-call-main);
+}
+header.main-header .fonts-setup-container .arrowdown {
+  position: absolute;
+  top: 0;
+  right: 5px;
+}/*# sourceMappingURL=App.css.map */
