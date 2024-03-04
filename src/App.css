@@ -34,6 +34,38 @@ button {
   cursor: pointer;
 }
 
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 120px;
+  height: 24px;
+  border: unset;
+  font-weight: 700;
+  border-radius: 10px;
+  background-color: transparent;
+  color: var(--clr-txt-main);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-padding-end: var(--mb);
+          padding-inline-end: var(--mb);
+}
+select:focus {
+  outline: unset;
+  background-color: var(--clr-bg-third);
+}
+select::after {
+  padding: 1rem;
+}
+
+.arrowdown {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  pointer-events: none;
+}
+
 input[type=range] {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -76,6 +108,29 @@ input[type=range].darkmode::-ms-thumb {
 input[type=range].darkmode + div svg path {
   stroke: var(--clr-call-main) !important;
 }
+input[type=text] {
+  background-color: var(--clr-bg-third);
+  width: 100%;
+  display: block;
+  height: 3rem;
+  border-radius: 0.8rem;
+  padding-inline: 2rem;
+  color: var(--clr-txt-main);
+  font-weight: 900;
+}
+input[type=text]:focus {
+  outline: 1px solid var(--clr-call-main);
+}
+input[type=text].invalid {
+  outline: 1px solid var(--clr-call-sub);
+}
+
+span.error {
+  position: absolute;
+  bottom: -18px;
+  font-size: smaller;
+  color: var(--clr-call-sub);
+}
 
 header.main-header .top-header {
   display: -webkit-box;
@@ -106,27 +161,6 @@ header.main-header .top-header .darkmode-container label {
 header.main-header .fonts-setup-container {
   position: relative;
 }
-header.main-header .fonts-setup-container select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: 120px;
-  height: 24px;
-  border: unset;
-  font-weight: 700;
-  border-radius: 10px;
-  background-color: transparent;
-  color: var(--clr-txt-main);
-}
-header.main-header .fonts-setup-container select:focus {
-  outline: unset;
-}
-header.main-header .fonts-setup-container .arrowdown {
-  position: absolute;
-  top: 0;
-  right: 5px;
-  pointer-events: none;
-}
 header.main-header .bottom-header {
   -webkit-margin-after: var(--mb);
           margin-block-end: var(--mb);
@@ -138,16 +172,6 @@ header.main-header .bottom-header form label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-header.main-header .bottom-header input[type=text] {
-  background-color: var(--clr-bg-third);
-  width: 100%;
-  display: block;
-  height: 3rem;
-  border-radius: 0.8rem;
-  padding-inline: 2rem;
-  color: var(--clr-txt-main);
-  font-weight: 900;
 }
 header.main-header .bottom-header button {
   position: absolute;
@@ -178,13 +202,32 @@ header.section-header .top-header h2 .phonetic {
   font-weight: 100;
   color: var(--clr-call-main);
 }
-header.section-header .top-header img {
-  width: 2rem;
+header.section-header .top-header button svg {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 2.3rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+header.section-header .top-header button:hover svg g circle {
+  opacity: 1;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+header.section-header .top-header button:hover svg g path {
+  fill: #fff;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .italic {
   font-style: italic;
   color: var(--clr-txt-main);
+}
+
+li {
+  margin-block: 1rem;
 }
 
 .details .italic {
@@ -228,9 +271,27 @@ header.section-header .top-header img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-margin-before: var(--mb);
+          margin-block-start: var(--mb);
+}
+.details .definition .synonym-container ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  gap: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 .details .definition .synonym-container li {
   list-style: none;

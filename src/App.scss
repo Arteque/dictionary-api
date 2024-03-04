@@ -27,6 +27,33 @@ button, input{
 button{
     cursor:pointer;
 }
+
+select{
+    appearance: none;
+    width: 120px;
+    height: 24px;
+    border: unset;
+    font-weight: 700;
+    border-radius: 10px;
+    background-color:transparent;
+    color: var(--clr-txt-main);
+    width: fit-content;
+    padding-inline-end: var(--mb);
+    &:focus{
+        outline: unset;
+        background-color: var(--clr-bg-third)
+    }
+    &::after{
+        padding: 1rem; 
+    }
+}
+.arrowdown{
+    position:absolute;
+    top: 0;
+    right: 5px;
+    pointer-events: none;
+}
+
 input{
     &[type="range"]{
         appearance: none;
@@ -69,9 +96,29 @@ input{
             }
         }
     }
+    &[type="text"]{
+        background-color: var(--clr-bg-third);
+        width: 100%;
+        display:block;
+        height: 3rem;
+        border-radius: 0.8rem;
+        padding-inline: 2rem;
+        color: var(--clr-txt-main);
+        font-weight: 900;
+        &:focus{
+            outline:1px solid var(--clr-call-main);
+        }
+        &.invalid{
+            outline:1px solid var(--clr-call-sub);
+        }
+    }
 }
-
-
+span.error{
+    position:absolute;
+    bottom: -18px;
+    font-size: smaller;
+    color: var(--clr-call-sub);
+}
 header{
     &.main-header{
         .top-header{
@@ -94,26 +141,7 @@ header{
         }
         .fonts-setup-container{
             position:relative;
-            select{
-                appearance: none;
-                width: 120px;
-                height: 24px;
-                border: unset;
-                font-weight: 700;
-                border-radius: 10px;
-                background-color:transparent;
-                color: var(--clr-txt-main);
-                &:focus{
-                    outline: unset;
-                    // background-color: #eee;
-                }
-            }
-            .arrowdown{
-                position:absolute;
-                top: 0;
-                right: 5px;
-                pointer-events: none;
-            }
+            
         }
         .bottom-header{
             margin-block-end: var(--mb);
@@ -121,18 +149,6 @@ header{
                 position:relative;
                 label{
                     display:flex;
-                }
-            }
-            input{
-                &[type="text"]{
-                    background-color: var(--clr-bg-third);
-                    width: 100%;
-                    display:block;
-                    height: 3rem;
-                    border-radius: 0.8rem;
-                    padding-inline: 2rem;
-                    color: var(--clr-txt-main);
-                    font-weight: 900;
                 }
             }
             button{
@@ -161,9 +177,28 @@ header{
                     color: var(--clr-call-main);
                 }
             }
-            img{
-                width:2rem;
+            button{
+                svg{
+                    height: fit-content;
+                    width:2.3rem;
+                    transition: all 0.3s;
+                }    
+                &:hover{
+                    svg{
+                       g{
+                            circle{
+                                opacity: 1;
+                                transition: all 0.3s;
+                            }
+                            path{
+                                fill: #fff;
+                                transition: all 0.3s;
+                            }
+                       } 
+                    }
+                }
             }
+            
         }
 
     }
@@ -172,6 +207,10 @@ header{
 .italic{
     font-style: italic;
     color: var(--clr-txt-main);
+}
+
+li{
+    margin-block: 1rem;
 }
 .details{
     .italic{
@@ -203,7 +242,15 @@ header{
         }
         .synonym-container{
            display:flex;
-           align-items:center;
+           align-items:flex-start;
+           margin-block-start: var(--mb);
+           ul{
+            display:flex;
+            flex-flow: row wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: flex-start;
+           }
            li{
             list-style:none;
             margin: 0;

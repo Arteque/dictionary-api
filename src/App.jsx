@@ -1,14 +1,20 @@
+//Context
+import { useGlobalData } from './Context/Search'
 //Components
 import Header from './Components/Header'
 import Fonts from './Components/Fonts'
 import Button from './Components/Button'
 import ImageContainer from './Components/ImageContainer'
 import Darkmode from './Components/Darkmode'
+import Input from './Components/Input'
+import Noun from './Components/Noun'
 import "./App.css"
 
 function App() {
 
  
+const {globalData, setGlobalData} = useGlobalData()
+
   return (
       <>
         {/*Main Header*/}
@@ -25,15 +31,13 @@ function App() {
 
             {/* Buttom Header Seach container */}
             <div className="bottom-header">
-              <form id="search-form">
-                <label htmlFor="search-input">
-                <input type="text" name="search-input" id="search-input" placeholder='Keyboard'/>
-                <Button btnType="submit">
+              <form id="search-form" >
+                <Input type="text" required="required"  name="search-input" />
+                <Button>
                   <ImageContainer classname="icon-container">
                     <img src="/images/icon-search.svg" alt="Search Icon" />
                   </ImageContainer>
                 </Button>
-                </label>
               </form>
             </div>
           </div>
@@ -44,12 +48,16 @@ function App() {
                 <Header headerName="section-header">
                     <div className="top-header">
                         <h2>
-                          <span className='headline'>Keyboard</span>
-                          <span className="phonetic">/ˈkiːbɔːd/</span>                          
+                          <span className='headline'>{globalData.word}</span>
+                          <span className="phonetic">{globalData.phonetic}</span>                          
                         </h2>
-                        <Button btnType="submit">
-                          <img src="/images/icon-play.svg" alt="Play Icon" />
+                        <Button>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75"><g fill="#A445ED" fillRule="evenodd"><circle cx="37.5" cy="37.5" r="37.5" opacity=".25"/><path d="M29 27v21l21-10.5z"/></g></svg>
+                          <video>
+                               <source src={globalData.phonetics[0].audio} type="audio/mpeg" />
+                          </video>
                         </Button>
+                        
                     </div>
                     <div className="bottom-header">
                       
@@ -63,19 +71,7 @@ function App() {
                         <div className="meaning-container">
                           <h4>Meaning</h4>
                           <ul>
-                            <li>(etc.) A set of keys used to operate a typewriter, computer etc.</li>
-                            <li>A component of many instruments including the piano, organ, and harpsichord consisting of usually black and white keys that cause different tones to be produced when struck.</li>
-                            <li>A device with keys of a musical keyboard, used to control electronic sound-producing devices which may be built into or separate from the keyboard device.</li>
-                          </ul>
-                        </div>
-                        <div className="synonym-container">
-                          <h4>Synonyms</h4>
-                          <ul>
-                            <li>
-                              <button>
-                                electronic keyboard
-                              </button>
-                            </li>
+                            <Noun items={globalData.meanings} term="noun"/>
                           </ul>
                         </div>
                     </div>
@@ -88,21 +84,18 @@ function App() {
                         <div className="meaning-container">
                           <h4>Meaning</h4>
                           <ul>
-                            <li>To type on a computer keyboard.</li>
+                            <Noun items={globalData.meanings} term="verb"/>
                           </ul>
-                          <p className="citation">
-                            “Keyboarding is the part of this job I hate the most.”
-                          </p>
                         </div>
                     </div>
                   </div>
 
                   {/* Source */}
                   <div className="source-container">
-                      
-                      <a href="https://en.wiktionary.org/wiki/keyboard" target='_bank'>
+                     
+                      <a href={globalData.sourceUrls} target='_bank'>
                         <span className="title">Source</span>
-                        <span>https://en.wiktionary.org/wiki/keyboard</span>
+                        <span> {globalData.sourceUrls}</span>
                         <img src="/images/icon-new-window.svg" alt="Open in new Tab" />
                       </a>
                       
