@@ -18,7 +18,7 @@ function Fonts() {
             <option value="mono">Mono</option>
         </select>
         <div className="arrowdown">
-          <img src="/images/icon-arrow-down.svg" alt="Arrowdown icon" />
+          <img src="/images/icon-arrow-down.svg" alt="Arrowdown" />
         </div>
     </div>
   )

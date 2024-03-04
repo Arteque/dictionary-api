@@ -2,11 +2,13 @@
 :root {
   --clr-bg-main: #ffffff;
   --clr-bg-sub: #757575;
+  --clr-bg-third: #CDCDCD;
   --clr-txt-main: #2e2e2e;
   --clr-txt-sub: #757575;
   --clr-call-main: #a445ed;
   --clr-call-sub: #ff5252;
   --font:"Inconsolata", monospace;
+  --mb: 24px;
 }
 
 body {
@@ -25,6 +27,7 @@ body[data-font=mono] {
 body.dark-mode {
   --clr-bg-main: #050505;
   --clr-bg-sub: #757575;
+  --clr-bg-third: #1F1F1F;
   --clr-txt-main: #ffffff;
   --clr-txt-sub: #757575;
   --clr-call-main: #a445ed;

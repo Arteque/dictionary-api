@@ -3,6 +3,7 @@ $darkmode:(
     bg:(
         main: #050505,
         sub: #757575,
+        third: #1F1F1F 
     ),
     txt:(
         main: #ffffff,
@@ -18,7 +19,8 @@ $darkmode:(
 $lightmode:(
     bg:(
         main: #ffffff,
-        sub: #757575
+        sub: #757575,
+        third: #CDCDCD
     ),
     txt:(
         main: #2e2e2e,
@@ -42,7 +44,6 @@ $txtsizes:(
         s:14px
     )
 );
-
 :root{
   @each $clr, $vls in $lightmode{
     @each $subclr, $subclrvl in $vls{
@@ -50,6 +51,7 @@ $txtsizes:(
     }
   }  
   --font:'Inconsolata', monospace;
+  --mb: 24px;
 }
 
 body{
