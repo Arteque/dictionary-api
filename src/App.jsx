@@ -1,19 +1,43 @@
-//Context
-import { useGlobalData } from './Context/Search'
 //Components
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import Header from './Components/Header'
 import Fonts from './Components/Fonts'
 import Button from './Components/Button'
 import ImageContainer from './Components/ImageContainer'
 import Darkmode from './Components/Darkmode'
 import Input from './Components/Input'
-import Noun from './Components/Noun'
+import Content from './Components/Content'
 import "./App.css"
 
 function App() {
 
- 
-const {globalData, setGlobalData} = useGlobalData()
+const [searchText, setSearchText] = useState("")
+const [errorText, setErrorText] = useState("")
+const [data, setData] = useState("")
+
+const baseUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchText}`
+
+
+useEffect((e) => {
+  searchText !== "" && (
+    axios
+    .get(baseUrl)
+    .then((response) => {
+        setData(response.data)
+        console.log(data)
+    })
+    .catch((err) => {
+        setErrorText("Oops: "+ err.response.data.title)
+    })
+  )
+},[searchText])
+
+
+const getSearchedText = (e) => {
+  e.preventDefault()
+  setSearchText(e.target.value)
+}
 
   return (
       <>
@@ -32,8 +56,13 @@ const {globalData, setGlobalData} = useGlobalData()
             {/* Buttom Header Seach container */}
             <div className="bottom-header">
               <form id="search-form" >
-                <Input type="text" required="required"  name="search-input" />
-                <Button>
+                <Input 
+                type="text" 
+                required="required"  
+                name="search-input" 
+                error={errorText}
+                />
+                <Button btnType="submit">
                   <ImageContainer classname="icon-container">
                     <img src="/images/icon-search.svg" alt="Search Icon" />
                   </ImageContainer>
@@ -48,58 +77,19 @@ const {globalData, setGlobalData} = useGlobalData()
                 <Header headerName="section-header">
                     <div className="top-header">
                         <h2>
-                          <span className='headline'>{globalData.word}</span>
-                          <span className="phonetic">{globalData.phonetic}</span>                          
+                          <span className='headline'>Keyboard</span>
+                          <span className="phonetic"></span>                          
                         </h2>
-                        <Button>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 75 75"><g fill="#A445ED" fillRule="evenodd"><circle cx="37.5" cy="37.5" r="37.5" opacity=".25"/><path d="M29 27v21l21-10.5z"/></g></svg>
-                          <video>
-                               <source src={globalData.phonetics[0].audio} type="audio/mpeg" />
-                          </video>
+                        <Button btnType="submit" handleClick={getSearchedText}>
+                          <img src="/images/icon-play.svg" alt="Play Icon" />
                         </Button>
-                        
                     </div>
                     <div className="bottom-header">
                       
                     </div>
                 </Header>
                 <div className="content">
-                  {/* Noun */}
-                  <div className="details">
-                    <h3 className="italic">noun</h3>
-                    <div className="definition">
-                        <div className="meaning-container">
-                          <h4>Meaning</h4>
-                          <ul>
-                            <Noun items={globalData.meanings} term="noun"/>
-                          </ul>
-                        </div>
-                    </div>
-                  </div>
-
-                  {/* Verb */}
-                  <div className="details">
-                    <h3 className="italic">Verb</h3>
-                    <div className="definition">
-                        <div className="meaning-container">
-                          <h4>Meaning</h4>
-                          <ul>
-                            <Noun items={globalData.meanings} term="verb"/>
-                          </ul>
-                        </div>
-                    </div>
-                  </div>
-
-                  {/* Source */}
-                  <div className="source-container">
-                     
-                      <a href={globalData.sourceUrls} target='_bank'>
-                        <span className="title">Source</span>
-                        <span> {globalData.sourceUrls}</span>
-                        <img src="/images/icon-new-window.svg" alt="Open in new Tab" />
-                      </a>
-                      
-                  </div>
+                    <Content />
                 </div>
               </div>
            </section>
