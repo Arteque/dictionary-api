@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { GlobalDataProvider} from './Context/Search'
 import App from './App.jsx'
 
 

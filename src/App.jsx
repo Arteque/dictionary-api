@@ -1,43 +1,83 @@
-//Components
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+//Components
 import Header from './Components/Header'
 import Fonts from './Components/Fonts'
 import Button from './Components/Button'
 import ImageContainer from './Components/ImageContainer'
 import Darkmode from './Components/Darkmode'
-import Input from './Components/Input'
-import Content from './Components/Content'
+import Searchform from './Components/Searchform'
+import Defintion from './Components/Defintion'
 import "./App.css"
 
 function App() {
 
-const [searchText, setSearchText] = useState("")
-const [errorText, setErrorText] = useState("")
-const [data, setData] = useState("")
-
-const baseUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${searchText}`
+// words suggestions url https://api.datamuse.com/sug?s=
+// words Search https://api.dictionaryapi.dev/api/v2/entries/en/
 
 
-useEffect((e) => {
-  searchText !== "" && (
-    axios
-    .get(baseUrl)
-    .then((response) => {
-        setData(response.data)
-        console.log(data)
-    })
-    .catch((err) => {
-        setErrorText("Oops: "+ err.response.data.title)
-    })
-  )
-},[searchText])
+
+  // Seachform text input
+  const [input, setInput] = useState("")
+
+  //Suggestions
+  const [suggestions, setSuggestions] = useState([])
 
 
-const getSearchedText = (e) => {
-  e.preventDefault()
-  setSearchText(e.target.value)
+//Final Searched Word Definitions
+
+  const [finalWord, setFinalWord] = useState([])
+
+  // Error Text
+  const [errorText, setErrorText] = useState("")
+
+
+
+  // observe the input text
+useEffect(() => {
+  if(input.length >= 2 ){
+    suggestWords(input)
+  }else{
+    setSuggestions([])
+  }
+}, [input])
+
+//Add the suggestions Word to the search Input Value
+
+const handleItemClick = (clickedWord) => {
+  setInput(clickedWord)
+  setSuggestions([])
 }
+
+
+//search Suggestions
+const suggestWords = (text) => {
+    axios.get(`https://api.datamuse.com/sug?s=${text}`)
+    .then((response) => {
+      const filterSuggestions = response.data.filter(
+        (item, index) =>!item.word.includes(" ") && index < 7)      
+        //change the suggestions
+        setSuggestions(filterSuggestions)
+
+    })
+}
+
+
+//Search the final word
+const searchFinalWord = (word) => {
+  axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+  .then(response => {
+    setFinalWord(response.data)
+    setSuggestions([])
+    setInput("")
+    setErrorText("")
+  })
+  .catch(error => {
+    const errorMessage = `${error.response.data.title} -- ${error.response.data.message}!`
+    setErrorText(errorMessage)
+  })
+}
+
 
   return (
       <>
@@ -52,22 +92,29 @@ const getSearchedText = (e) => {
               <Fonts />
               <Darkmode />
             </div>
-
             {/* Buttom Header Seach container */}
             <div className="bottom-header">
-              <form id="search-form" >
-                <Input 
-                type="text" 
-                required="required"  
-                name="search-input" 
-                error={errorText}
+                <Searchform 
+
+                searchInput={(e) => {
+                  setInput(e.target.value)
+                }}
+                
+                submitInput={(e) => {
+                  e.preventDefault()
+                  // setInput(e.target.value)
+                  searchFinalWord(input)
+                }}
+
+                errorText={errorText}
+
+                suggestionList={suggestions}
+
+                inputValue={input}
+                
+                searchClickedItem={handleItemClick}
+
                 />
-                <Button btnType="submit">
-                  <ImageContainer classname="icon-container">
-                    <img src="/images/icon-search.svg" alt="Search Icon" />
-                  </ImageContainer>
-                </Button>
-              </form>
             </div>
           </div>
         </Header>
@@ -80,7 +127,7 @@ const getSearchedText = (e) => {
                           <span className='headline'>Keyboard</span>
                           <span className="phonetic"></span>                          
                         </h2>
-                        <Button btnType="submit" handleClick={getSearchedText}>
+                        <Button btnType="submit">
                           <img src="/images/icon-play.svg" alt="Play Icon" />
                         </Button>
                     </div>
@@ -89,7 +136,7 @@ const getSearchedText = (e) => {
                     </div>
                 </Header>
                 <div className="content">
-                    <Content />
+                  <Defintion items={finalWord}/>
                 </div>
               </div>
            </section>
