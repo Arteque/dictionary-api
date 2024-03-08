@@ -1,5 +1,4 @@
 import SuggestionListItems from "./SuggestionListItems"
-
 function Searchform({searchInput, submitInput,suggestionList, errorText, searchClickedItem,inputValue}) {
 
 
@@ -14,7 +13,8 @@ function Searchform({searchInput, submitInput,suggestionList, errorText, searchC
                     type="text" 
                     required 
                     name="search-input" 
-                    id="search-input" 
+                    id="search-input"
+                    autoComplete="off"
                     placeholder="Search for any word..."
                     value={inputValue}      
                     />
@@ -25,16 +25,18 @@ function Searchform({searchInput, submitInput,suggestionList, errorText, searchC
             </div>
             <span className='error'>{errorText}</span>
             {/* Show Suggestions */}
-            <ul className="wordsuggestion-container" >         
-                  {suggestionList.map((item,index) => {
-                    return <SuggestionListItems 
-                    key={`${item.word}-${index}`} 
-                    suggestionWord={item.word}
-                    dataValue={item.word}
-                    onItemClick={searchClickedItem}
-                    />
-                  })}
-            </ul>
+            <div className="suggestionlist-container">
+              <ul className="wordsuggestion-container" >         
+                    {suggestionList.map((item,index) => {
+                      return <SuggestionListItems 
+                      key={`${item.word}-${index}`} 
+                      suggestionWord={item.word}
+                      dataValue={item.word}
+                      onItemClick={searchClickedItem}
+                      />
+                    })}
+              </ul>
+            </div>
         </form> 
     </>
   )
