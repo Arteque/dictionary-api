@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Screenshot
 
-![the desktop version](./screenshot.png)
+![the desktop version](./src/screenshot.png)
 
 ### Links
 
