@@ -3,7 +3,6 @@ import axios from 'axios'
 //Components
 import Header from './Components/Header'
 import Fonts from './Components/Fonts'
-import Button from './Components/Button'
 import ImageContainer from './Components/ImageContainer'
 import Darkmode from './Components/Darkmode'
 import Searchform from './Components/Searchform'
@@ -79,6 +78,8 @@ const searchFinalWord = (word) => {
 }
 
 
+
+
   return (
       <>
         {/*Main Header*/}
@@ -118,29 +119,7 @@ const searchFinalWord = (word) => {
             </div>
           </div>
         </Header>
-        <main>
-           <section>
-              <div className="wrapper">	
-                <Header headerName="section-header">
-                    <div className="top-header">
-                        <h2>
-                          <span className='headline'>Keyboard</span>
-                          <span className="phonetic"></span>                          
-                        </h2>
-                        <Button btnType="submit">
-                          <img src="/images/icon-play.svg" alt="Play Icon" />
-                        </Button>
-                    </div>
-                    <div className="bottom-header">
-                      
-                    </div>
-                </Header>
-                <div className="content">
-                  <Defintion items={finalWord}/>
-                </div>
-              </div>
-           </section>
-        </main>
+        <Defintion items={finalWord}/>
       </>
       
     
