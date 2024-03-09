@@ -20,7 +20,7 @@ function Searchform({searchInput, submitInput,suggestionList, errorText, searchC
                     />
                 </label>
                 <button type="submit">
-                    <img src="/images/icon-search.svg" alt="Search Icon" />
+                    <img src="./images/icon-search.svg" alt="Search Icon" />
                 </button>
             </div>
             <span className='error'>{errorText}</span>
