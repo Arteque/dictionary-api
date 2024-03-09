@@ -123,20 +123,31 @@ const searchFinalWord = (word) => {
   setDarkMode(prev => !prev)
  }
 
-//Font Style Mode
+
+ useEffect(() => {
+  document.onreadystatechange = () => {
+    console.log(document.readyState)
+      if(document.readyState !== "complete"){
+        setLoading(true)
+      }else{
+        setLoading(false)
+      }
+  }
+},[])
 
 
 
 
   return (
       <>
+      <Loader addClass={loading ? 'loader show-loader' : 'loader hide-loader'} />
         {/*Main Header*/}
         <Header headerName="main-header">
           <div className="wrapper">
               {/* Top Header */}
             <div className="top-header">
               <ImageContainer classname="logo-container">
-                <img src="/images/logo.svg" alt="logo-container" />
+                <img src="./images/logo.svg" alt="logo-container" />
               </ImageContainer>
               <Fonts />
               <Darkmode 
@@ -177,7 +188,7 @@ const searchFinalWord = (word) => {
             <main>
               <section>
                   <div className="wrapper">
-                    <Loader addClass={loading ? 'loader show-loader' : 'loader hide-loader'} />
+                    
                     <Header headerName="section-header">
                         <div className="top-header">
                             <h2>
@@ -202,7 +213,7 @@ const searchFinalWord = (word) => {
                               && (
                                 <>
                                   <button className="playaudio-btn" onClick={playAudio}>
-                                    <img src="/images/icon-play.svg" alt="Play Icon" />
+                                    <img src="./images/icon-play.svg" alt="Play Icon" />
                                   </button>
                                   <audio id="audioElement" src={finalWord[0].phonetics[0].audio}></audio>
                                 </>
@@ -278,7 +289,7 @@ const searchFinalWord = (word) => {
                             <a href={finalWord[0].sourceUrls[0]} target='_bank' title={finalWord[0].sourceUrls[0]}>
                               <span className="title">Source</span>
                               <span>{finalWord[0].sourceUrls[0]}</span>
-                              <img src="/images/icon-new-window.svg" alt="Open in new Tab" />
+                              <img src="./images/icon-new-window.svg" alt="Open in new Tab" />
                             </a>
                       </div>
                   </div>

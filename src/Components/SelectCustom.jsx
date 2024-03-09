@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 
 function SelectCustom() {
 
-    const [value, setValue] = useState(localStorage.getItem("fontStyle") || 'Sans-serif')
-    // const [dataValue, setDataValue] = useState(localStorage.getItem("fontStyle"))
+    const [value, setValue] = useState(localStorage.getItem("fontStyle") || 'sans-serif')
     const [isOpen, setIsOpen] = useState("")
 
 
     useEffect(() => {
+        if(!localStorage.getItem("fontStyle")) {
+            setValue("sans-serif")
+        }
         document.body.setAttribute("data-font", value);
         localStorage.setItem("fontStyle", value);
       }, [value]);
 
-    
+
 
   return (
     <div className="custom-dropdown">
@@ -37,7 +39,7 @@ function SelectCustom() {
                 // setDataValue(1)
                 localStorage.setItem("fontStyle", 1)
                 setIsOpen(prev => !prev)
-            }}>Serfi</div>
+            }}>Serif</div>
             <div className="dropdown-item" datavalue={2}
             onClick={() => {
                 setValue("mono")

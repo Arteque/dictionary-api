@@ -211,7 +211,7 @@ input[type=text] {
   background-color: var(--clr-bg-third);
   width: 100%;
   display: block;
-  height: 3rem;
+  height: 64px;
   border-radius: 0.8rem;
   padding-inline: 2rem;
   font-weight: 900;
@@ -256,7 +256,7 @@ header.main-header .top-header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-block: var(--mb);
+  margin-block: 60px var(--mb);
 }
 header.main-header .top-header .logo-container {
   -webkit-margin-end: auto;
@@ -409,16 +409,12 @@ li {
   -webkit-margin-after: var(--mb);
           margin-block-end: var(--mb);
 }
-.details .definition .meaning-container {
-  -webkit-margin-after: var(--mb);
-          margin-block-end: var(--mb);
-}
-.details .definition .meaning-container h4 {
+.details .definition h4 {
   color: var(--clr-txt-sub);
   font-size: 1rem;
   font-weight: normal;
-  -webkit-margin-after: var(--mb);
-          margin-block-end: var(--mb);
+  -webkit-margin-after: 25px;
+          margin-block-end: 25px;
 }
 .details .definition .synonym-container {
   display: -webkit-box;
@@ -619,5 +615,10 @@ li {
   .playaudio-btn {
     width: 75px;
     height: 75px;
+  }
+  .source-container .title {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
   }
 }/*# sourceMappingURL=App.css.map */

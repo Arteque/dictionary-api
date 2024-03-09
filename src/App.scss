@@ -181,7 +181,7 @@ input{
         background-color: var(--clr-bg-third);
         width: 100%;
         display:block;
-        height: 3rem;
+        height: 64px;
         border-radius: 0.8rem;
         padding-inline: 2rem;
         font-weight: 900;
@@ -209,8 +209,7 @@ header{
             display:flex;
             justify-content: flex-end;
             align-items:center;
-            // gap: 1rem;
-            margin-block: var(--mb);
+            margin-block: 60px var(--mb);
             .logo-container{
                 margin-inline-end:auto;
             }
@@ -346,13 +345,13 @@ li{
     .definition{
         margin-block-end:var(--mb);
         .meaning-container{
-            margin-block-end: var(--mb);
-            h4{
-                color: var(--clr-txt-sub);
-                font-size: 1rem;
-                font-weight: normal;
-                margin-block-end: var(--mb);
-            }
+            // margin-block-end: 10px;
+        }
+        h4{
+            color: var(--clr-txt-sub);
+            font-size: 1rem;
+            font-weight: normal;
+            margin-block-end: 25px;
         }
         .synonym-container{
            display:flex;
@@ -504,5 +503,8 @@ li{
     .playaudio-btn{
         width: 75px;
          height: 75px;
+    }
+    .source-container .title {
+        width: fit-content;
     }
 } 

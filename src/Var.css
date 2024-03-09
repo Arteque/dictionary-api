@@ -2,13 +2,13 @@
 :root {
   --clr-bg-main: #ffffff;
   --clr-bg-sub: #757575;
-  --clr-bg-third: #d6d6d6;
+  --clr-bg-third: #F4F4F4;
   --clr-txt-main: #2e2e2e;
   --clr-txt-sub: #757575;
   --clr-call-main: #a445ed;
   --clr-call-sub: #ff5252;
   --font:"Inconsolata", monospace;
-  --mb: 42px;
+  --mb: 52px;
 }
 
 body {
