@@ -20,7 +20,7 @@ $lightmode:(
     bg:(
         main: #ffffff,
         sub: #757575,
-        third: #CDCDCD
+        third: #d6d6d6
     ),
     txt:(
         main: #2e2e2e,
@@ -51,7 +51,7 @@ $txtsizes:(
     }
   }  
   --font:'Inconsolata', monospace;
-  --mb: 24px;
+  --mb: 42px;
 }
 
 body{

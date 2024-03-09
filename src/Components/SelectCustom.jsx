@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 function SelectCustom() {
 
-    const [value, setValue] = useState(localStorage.getItem("fontStyle"))
+    const [value, setValue] = useState(localStorage.getItem("fontStyle") || 'Sans-serif')
     // const [dataValue, setDataValue] = useState(localStorage.getItem("fontStyle"))
     const [isOpen, setIsOpen] = useState("")
 
